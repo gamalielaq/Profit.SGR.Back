@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +16,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import profit.sgr.anotattions.ApiResponsesException;
 import profit.sgr.exception.models.ExceptionHandlig;
 import profit.sgr.models.entity.Divisa;
+import profit.sgr.models.entity.Entries;
+import profit.sgr.response.ProfitResponse;
 import profit.sgr.services.interfaces.IDivisaService;
+import profit.sgr.services.interfaces.IEntrie;
 
 
 @RestController()
@@ -24,8 +27,11 @@ import profit.sgr.services.interfaces.IDivisaService;
 @Tag(name = "Divisas", description = "Endpoints para la gestion de Divisas")
 public class DivisaController extends ExceptionHandlig {
     
-    @Autowired 
+    @Autowired
     private IDivisaService divisaService;
+
+    @Autowired
+    private IEntrie entrieService;
 
     @GetMapping("/divisa/listar")
     @Operation(summary = "Listar Todas la divisas", description = "", tags = { "contacto" })
@@ -39,8 +45,8 @@ public class DivisaController extends ExceptionHandlig {
         return this.divisaService.findAll();
     }
 
-    @PostMapping("/divisa")
-    private String save() {  
-        return "Probando un String";
+    @GetMapping("/profit")
+    private ProfitResponse profit(@RequestBody Entries entries) {
+        return this.entrieService.getProfit(entries);
     }
 }
