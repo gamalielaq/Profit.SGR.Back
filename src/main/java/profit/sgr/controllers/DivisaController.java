@@ -22,7 +22,7 @@ import profit.sgr.services.interfaces.IDivisaService;
 import profit.sgr.services.interfaces.IEntrie;
 
 
-@RestController()
+@RestController
 @RequestMapping(path = { "/", "/api" })
 @Tag(name = "Divisas", description = "Endpoints para la gestion de Divisas")
 public class DivisaController extends ExceptionHandlig {
@@ -39,8 +39,8 @@ public class DivisaController extends ExceptionHandlig {
         responseCode = "200",
         description = "OK",
         content = @Content (mediaType = "application/json", schema = @Schema(implementation = Divisa.class))
-        )
-    @ApiResponsesException()
+    )
+    @ApiResponsesException
     private List<Divisa> getAllDivisas() {  
         return this.divisaService.findAll();
     }

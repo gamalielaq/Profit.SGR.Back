@@ -13,12 +13,10 @@ import profit.sgr.services.interfaces.IDivisaService;
 public class DivisaService implements IDivisaService {
 
     @Autowired
-    private IDivisaRepository divisaRepository;
-
+    private IDivisaRepository repository;
 
     @Override
     public List<Divisa> findAll() {
-        return this.divisaRepository.findAll();
-    }
-        
+        return this.repository.findAll();
+    }   
 }

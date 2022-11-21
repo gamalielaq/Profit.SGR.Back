@@ -8,6 +8,4 @@ import profit.sgr.models.entity.Divisa;
 
 public interface IDivisaRepository extends JpaRepository<Divisa, Long> {
     
-    // public List<Divisa> findAll();
-   
 }
